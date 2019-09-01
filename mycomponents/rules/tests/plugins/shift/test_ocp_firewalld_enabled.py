@@ -28,20 +28,26 @@ kubelet.service                    loaded active running Kubernetes Kubelet
 """.strip()
 
 CONTENT_INSTALLED_RPMS_HIT = """
-tomic-openshift-excluder-3.11.59-1.git.0.7cb6277.el7.noarch
-atomic-openshift-hyperkube-3.11.59-1.git.0.7cb6277.el7.x86_64
-atomic-openshift-node-3.11.59-1.git.0.7cb6277.el7.x86_64
-atomic-openshift-3.11.59-1.git.0.7cb6277.el7.x86_64
-atomic-openshift-clients-3.11.59-1.git.0.7cb6277.el7.x86_64
-atomic-openshift-docker-excluder-3.11.59-1.git.0.7cb6277.el7.noarch
+cri-o-1.13.9-1.rhaos4.1.gitd70609a.el7.x86_64
+subscription-manager-1.21.10-2.el7.x86_64
+subscription-manager-rhsm-1.21.10-2.el7.x86_64
+openshift-clients-4.1.9-201907280809.git.0.0cb2391.el7.x86_64
+criu-3.12-2.el7.x86_64
+cri-tools-1.13.0-1.rhaos4.1.gitc06001f.el7.x86_64
+subscription-manager-rhsm-certificates-1.21.10-2.el7.x86_64
+initscripts-9.49.46-1.el7.x86_64
+openshift-hyperkube-4.1.9-201907280809.git.0.0cb2391.el7.x86_64
 """.strip()
 
 CONTENT_INSTALLED_RPMS_NOT_HIT = """
-atomic-openshift-excluder-3.11.59-1.git.0.7cb6277.el7.noarch
-atomic-openshift-node-3.11.59-1.git.0.7cb6277.el7.x86_64
-atomic-openshift-3.11.59-1.git.0.7cb6277.el7.x86_64
-atomic-openshift-clients-3.11.59-1.git.0.7cb6277.el7.x86_64
-atomic-openshift-docker-excluder-3.11.59-1.git.0.7cb6277.el7.noarch
+cri-o-1.13.9-1.rhaos4.1.gitd70609a.el7.x86_64
+subscription-manager-1.21.10-2.el7.x86_64
+subscription-manager-rhsm-1.21.10-2.el7.x86_64
+openshift-clients-4.1.9-201907280809.git.0.0cb2391.el7.x86_64
+criu-3.12-2.el7.x86_64
+cri-tools-1.13.0-1.rhaos4.1.gitc06001f.el7.x86_64
+subscription-manager-rhsm-certificates-1.21.10-2.el7.x86_64
+initscripts-9.49.46-1.el7.x86_64
 """.strip()
 
 @archive_provider(ocp_firewalld_enabled.report)
@@ -51,7 +57,7 @@ def integration_test_no_hit():
     data.add(Specs.ps_aux, CONTENT_PS_AUX_HIT)
     data.add(Specs.systemctl_list_units, LIST_UNITS_FIREWALLD_RUNNING)
     data.add(Specs.installed_rpms, CONTENT_INSTALLED_RPMS_HIT)
-    expected = make_fail(ocp_firewalld_enabled.ERROR_KEY, firewalld_service=True, version="3.11.59")
+    expected = make_fail(ocp_firewalld_enabled.ERROR_KEY, firewalld_service=True, version="4.1.9")
     yield data, expected
 
     data = InputData("test2")
