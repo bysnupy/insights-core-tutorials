@@ -1,7 +1,7 @@
 from insights.core.plugins import make_fail
 from insights.specs import Specs
 from insights.tests import archive_provider, InputData
-from shared_rules.service import tuned_not_applying_profiles
+from mycomponents.rules.plugins.shift import tuned_not_applying_profiles
 
 INSTALLED_TUNED_HIT = """
 libpwquality-1.2.3-5.el7.x86_64
