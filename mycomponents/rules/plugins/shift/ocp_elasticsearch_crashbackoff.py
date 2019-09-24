@@ -15,7 +15,7 @@ INCIDENTS_2 = ['Back-off', 'restarting failed container=elasticsearch']
 add_filter(Specs.messages, INCIDENTS_1)
 Messages.keep_scan("checking_backoff_elasticsearch", INCIDENTS_1)
 
-add_filter(Specs.messages, INCIDENTS_2)
+add_filter(Specs.messages, INCIDENTS_2[1])
 Messages.keep_scan("restarting_failed_elasticsearch", INCIDENTS_2)
 
 
